@@ -73,7 +73,6 @@ class App extends Component {
     }
     axios.get(`http://data.tmsapi.com/v1.1/movies/showings?startDate=${day}&zip=${inputZip}&api_key=grymhebqmyywp9k2vfnrnsu4`)
     .then((response) => {  
-        console.log(response.data);
         var theatreShowtimesArray = [];
         for (let i = 0; i < response.data.length; i++){
           
@@ -89,7 +88,19 @@ class App extends Component {
           };
           for (let j = 0; j < response.data[i].showtimes.length; j++){
             let theatreName = response.data[i].showtimes[j].theatre.name;
-            let showtimes = response.data[i].showtimes[j].dateTime;
+            let showtimesArray = response.data[i].showtimes[j].dateTime.split("T", 2);
+            let tempTime = showtimesArray[1].split(":", 2);
+            let hour = parseInt(tempTime[0],10);
+            if(hour > 12){
+              hour -= 12;
+              tempTime[1] += " PM";
+            } else if (hour == 12){
+              tempTime[1] += " PM";
+            } else {
+              tempTime[1] += " AM";
+            }
+            let dayValue = this.state.dayValue == 0 ? "Today @ " : "Tomorrow @ ";
+            let showtimes = dayValue + hour + ":" + tempTime[1];
             if(!(objectOfMovie.hasOwnProperty("showtimes"))){
               objectOfMovie.boolean = false;
               objectOfMovie.showtimes = {};
@@ -100,7 +111,6 @@ class App extends Component {
             objectOfMovie.showtimes[theatreName].push(showtimes);
           }
           theatreShowtimesArray.push(objectOfMovie);
-          console.log(objectOfMovie)
         }
         this.setState({
           outputShowtimes: theatreShowtimesArray,

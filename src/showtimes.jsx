@@ -10,27 +10,27 @@ export default class Showtimes extends Component {
     }
   }
 
-  componentWillMount(){
-    this.state.showtimesKeys.map(keyTheater => {
-      let encKeyTheater = encodeURI(keyTheater);
-      axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.799811,%20-117.247657&radius=10000&type=movie_theater&keyword=${encKeyTheater}&key=AIzaSyBHQCbrnxTUiD8R53sCZ-SzR1M5OACf1-w`)
-      .then((response)=>{
-          console.log(response.data);
-          let index;
-          response.data.results.map((result, i) => {
-            if (result.name == keyTheater){
-              index = i;
-            }
-          })
-          this.setState({
-              [keyTheater]: response.data.results[index].geometry.location,
-          })
-          console.log(this.state)
-      }).catch(err =>{
-        console.log(err);
-      })
-    })
-  }
+  // componentWillMount(){
+  //   this.state.showtimesKeys.map(keyTheater => {
+  //     let encKeyTheater = encodeURI(keyTheater);
+  //     axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.799811,%20-117.247657&radius=10000&type=movie_theater&keyword=${encKeyTheater}&key=AIzaSyBHQCbrnxTUiD8R53sCZ-SzR1M5OACf1-w`)
+  //     .then((response)=>{
+  //         console.log(response.data);
+  //         let index;
+  //         response.data.results.map((result, i) => {
+  //           if (result.name == keyTheater){
+  //             index = i;
+  //           }
+  //         })
+  //         this.setState({
+  //             [keyTheater]: response.data.results[index].geometry.location,
+  //         })
+  //         console.log(this.state)
+  //     }).catch(err =>{
+  //       console.log(err);
+  //     })
+  //   })
+  // }
 
   render(){
 
