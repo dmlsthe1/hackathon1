@@ -4,11 +4,19 @@ export default class InnerShowtimes extends Component {
     
     render(){
         return (
-            <div>
-                <h5 key={this.props.index} className="h5">{`${this.props.keyName}`}</h5>
-                  {this.props.keyTheater.map((showtime, index) => 
-                  <p key={index}>{showtime}</p>)}
-            </div>
+            <table className="table">
+                <thead>
+                <tr>
+                    <th key={this.props.index} className="h5"><strong>{`${this.props.keyName}`}</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {this.props.keyTheater.map((showtime, index) => 
+                        <tr key={index}>
+                            <td key={index} className="text-center">{showtime}</td>
+                        </tr>)}
+                </tbody>
+            </table>
         )
     }
 }
