@@ -1,6 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# hackathon
 
-1) npm install
-2) npm run build
-2) npm start
-3) enjoy using the movie showtimes by movie
+A website to receive the movies playing in theatres within a 10 mile radius of the given zip code.
+When a movie is clicked you are shown the theatres it is showing in with the showtimes at those theatres
+
+## Setup
+
+```
+npm install
+```
+```
+npm run build
+```
+```
+npm start
+```
+
+## Contributing
+
+* Open a pull request, all contributions will be considered.
